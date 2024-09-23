@@ -4,8 +4,6 @@ import Dashboard from "views/Dashboard/Dashboard.js";
 import Billing from "views/Dashboard/Billing.js";
 import RTLPage from "views/RTL/RTLPage.js";
 import Profile from "views/Dashboard/Profile.js";
-import SignIn from "views/Pages/SignIn.js";
-import SignUp from "views/Pages/SignUp.js";
 
 import {
   HomeIcon,
@@ -16,7 +14,11 @@ import {
   RocketIcon,
   SupportIcon,
 } from "components/Icons/Icons";
-import ContactsMain from 'views/Dashboard/contactsmain';
+import Tables from 'views/Dashboard/Tables';
+import SignIn from 'views/Dashboard/SignIn';
+import SignUp from 'views/Dashboard/SignUp';
+import ForgotPassword from 'views/Dashboard/ForgotPassword';
+import VerifyEmail from 'views/Dashboard/VerifyEmail';
 
 var dashRoutes = [
   {
@@ -28,11 +30,11 @@ var dashRoutes = [
     layout: "/admin",
   },
   {
-    path: "/contacts",
-    name: "Contacts",
+    path: "/tables",
+    name: "tables",
     rtlName: "لوحة القيادة",
     icon: <StatsIcon color='inherit' />,
-    component: ContactsMain,
+    component: Tables,
     layout: "/admin",
   },
   {
@@ -80,6 +82,22 @@ var dashRoutes = [
         rtlName: "لوحة القيادة",
         icon: <RocketIcon color='inherit' />,
         component: SignUp,
+        layout: "/auth",
+      },
+      {
+        path: "/forgotpassword",
+        name: "Forgot Password",
+        rtlName: "لوحة القيادة",
+        icon: <RocketIcon color='inherit' />,
+        component: ForgotPassword,
+        layout: "/auth",
+      },
+      {
+        path: "/verifyemail",
+        name: "Verify Email",
+        rtlName: "لوحة القيادة",
+        icon: <RocketIcon color='inherit' />,
+        component: VerifyEmail,
         layout: "/auth",
       },
     ],

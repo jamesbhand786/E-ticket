@@ -26,7 +26,7 @@ import FixedPlugin from "../components/FixedPlugin/FixedPlugin";
 import MainPanel from "../components/Layout/MainPanel";
 import PanelContainer from "../components/Layout/PanelContainer";
 import PanelContent from "../components/Layout/PanelContent";
-import bgAdmin from "assets/img/bgnew.jpg";
+import bgAdmin from "assets/img/admin-background.png";
 
 export default function Dashboard(props) {
   const { ...rest } = props;
@@ -111,7 +111,7 @@ export default function Dashboard(props) {
         minH="20vh"
         w="100%"
         position="absolute"
-        bgImage={colorMode === "light" ? bgAdmin : "none"}
+        bgImage={colorMode === "light" ? bgAdmin : "navy.900"}
         bg={colorMode === "light" ? bgAdmin : "navy.900"}
         bgSize="contain"
         height={"20vh"}
@@ -167,7 +167,7 @@ export default function Dashboard(props) {
           </PanelContent>
         ) : null}
         {/* <Footer /> */}
-        <Portal>
+        {/* <Portal>
           <FixedPlugin
             secondary={getActiveNavbar(routes)}
             fixed={fixed}
@@ -182,7 +182,7 @@ export default function Dashboard(props) {
           onSwitch={(value) => {
             setFixed(value);
           }}
-        />
+        /> */}
       </MainPanel>
     </Box>
   );

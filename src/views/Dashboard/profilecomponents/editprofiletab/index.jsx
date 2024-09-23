@@ -22,7 +22,6 @@ const labelStyles = {
 
 const EditProfileDetailsTab = ({ profile }) => {
     const textColor = useColorModeValue("gray.700", "white");
-
     return (
         <Box p={4} shadow="md" borderWidth="1px" borderRadius="md" mt={5}>
             <Text fontSize='2xl' fontWeight={600}>Change Password</Text>

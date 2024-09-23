@@ -49,7 +49,7 @@ function SignUp() {
         mx={{ md: "auto" }}
         mt={{ md: "14px" }}
         borderRadius={{ base: "0px", md: "20px" }}>
-        <Box w='100vw' h='100vh' bg='blue.500' opacity='0.8'></Box>
+        <Box w='100vw' h='100vh' bg='gray.900' opacity='0.9'></Box>
       </Box>
       <Flex
         direction='column'
@@ -67,7 +67,7 @@ function SignUp() {
           fontWeight='normal'
           mt='10px'
           mb='26px'
-          w={{ base: "90%", sm: "60%", lg: "40%", xl: "333px" }}>
+          w={{ base: "90%", sm: "80%", lg: "80%", xl: "60%" }}>
           Use these awesome forms to login or create new account in your project
           for free.
         </Text>
@@ -93,7 +93,7 @@ function SignUp() {
             mb='22px'>
             Register With
           </Text>
-          <HStack spacing='15px' justify='center' mb='22px'>
+          {/* <HStack spacing='15px' justify='center' mb='22px'>
             <Flex
               justify='center'
               align='center'
@@ -162,7 +162,7 @@ function SignUp() {
             textAlign='center'
             mb='22px'>
             or
-          </Text>
+          </Text> */}
           <FormControl>
             <FormLabel ms='4px' fontSize='sm' fontWeight='normal'>
               Name

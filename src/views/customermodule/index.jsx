@@ -15,6 +15,8 @@ import {
   InputGroup,
   InputLeftElement,
   Input,
+  useDisclosure,
+  Button,
 } from '@chakra-ui/react';
 import { grey } from '@mui/material/colors';
 import { PlusSquareIcon, Search2Icon, SearchIcon } from '@chakra-ui/icons';
@@ -25,7 +27,16 @@ import { MdEmojiEmotions } from "react-icons/md";
 import { IoMdSend } from "react-icons/io";
 import Profile from 'views/Dashboard/Profile';
 import CustomerTabModule from './components/customertabmodule';
-
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from '@chakra-ui/react'
+import AddCustomerDetails from './components/addnewcustomerlist';
 // Extend the default theme to customize colors
 const customTheme = extendTheme({
   colors: {
@@ -83,21 +94,22 @@ const SocialChatShell = () => {
     setSelectedConversation(conversation);
   };
   const emailColor = useColorModeValue("gray.400", "gray.300");
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
 
   return (
-    <Flex h="60vh">
+    <Flex h="70vh">
       {/* Conversation List */}
       <Box w="25%" borderRightWidth="1px" overflowY="scroll" maxHeight="100vh">
         <Flex justifyContent={'space-between'} alignItems={'center'}>
           <Text fontSize={18} fontWeight={600}  >
             Contacts
           </Text>
-          <Box width={8} mr={4} height={8} background={'#e2e8f0'} borderRadius={50} display={'flex'} alignItems={'center'} justifyContent={'center'}>
+          <Box width={8} mr={4} height={8} background={'#e2e8f0'} borderRadius={50} display={'flex'} alignItems={'center'} justifyContent={'center'} onClick={onOpen}>
               <GoPlus />
           </Box>
         </Flex>
-        <Box m={4} ml={1}>
+        <Box m={4} ml={0}>
           <InputGroup>
             <InputLeftElement
               pointerEvents="none"
@@ -134,6 +146,20 @@ const SocialChatShell = () => {
       <Box width={'100%'}>
       <CustomerTabModule />
       </Box>
+      <Modal isOpen={isOpen} onClose={onClose} isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>
+          <Text fontSize={18} fontWeight={500}  >
+            Add New Contact
+          </Text>
+          </ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <AddCustomerDetails/>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </Flex>
   );
 };

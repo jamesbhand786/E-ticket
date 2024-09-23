@@ -50,7 +50,7 @@ function SignIn() {
             w='445px'
             background='transparent'
             borderRadius='15px'
-            p='40px'
+            p='28px'
             mx={{ base: "100px" }}
             m={{ base: "20px", md: "auto" }}
             bg={bgForm}
@@ -62,11 +62,10 @@ function SignIn() {
               fontSize='xl'
               color={textColor}
               fontWeight='bold'
-              textAlign='center'
-              mb='22px'>
-              Register With
+              mb='2rem'>
+              Login
             </Text>
-            <HStack spacing='15px' justify='center' mb='22px'>
+            {/* <HStack spacing='15px' justify='center' mb='22px'>
               <Flex
                 justify='center'
                 align='center'
@@ -127,15 +126,15 @@ function SignIn() {
                   />
                 </Link>
               </Flex>
-            </HStack>
-            <Text
+            </HStack> */}
+            {/* <Text
               fontSize='lg'
               color='gray.400'
               fontWeight='bold'
               textAlign='center'
               mb='22px'>
               or
-            </Text>
+            </Text> */}
             <FormControl>
               <FormLabel ms='4px' fontSize='sm' fontWeight='normal'>
                 Name
@@ -161,11 +160,14 @@ function SignIn() {
                 mb='24px'
                 size='lg'
               />
-              <FormControl display='flex' alignItems='center' mb='24px'>
+              <FormControl display='flex' alignItems='basline' mb='24px'>
                 <Switch id='remember-login' colorScheme='blue' me='10px' />
                 <FormLabel htmlFor='remember-login' mb='0' fontWeight='normal'>
                   Remember me
                 </FormLabel>
+                <FormLabel ml='auto' mr={0} fontSize='sm'  colorScheme='blue'  fontWeight='normal'>
+                Forgot Password
+              </FormLabel>
               </FormControl>
               <Button
                 fontSize='10px'
@@ -174,7 +176,7 @@ function SignIn() {
                 w='100%'
                 h='45'
                 mb='24px'>
-                SIGN UP
+                LOGIN
               </Button>
             </FormControl>
             <Flex
@@ -184,14 +186,14 @@ function SignIn() {
               maxW='100%'
               mt='0px'>
               <Text color={textColor} fontWeight='medium'>
-                Already have an account?
+                Don't have an account?
                 <Link
                   color={titleColor}
                   as='span'
                   ms='5px'
                   href='#'
                   fontWeight='bold'>
-                  Sign In
+                  Sign Up
                 </Link>
               </Text>
             </Flex>
@@ -208,8 +210,8 @@ function SignIn() {
             w='100%'
             h='100%'
             bgSize='cover'
-            bg='blue.500'
-            opacity='0.8'></Box>
+            bg='gray.900'
+            opacity='0.9'></Box>
         </Box>
       </Flex>
     </Flex>

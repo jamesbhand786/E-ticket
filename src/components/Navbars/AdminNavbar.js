@@ -154,7 +154,8 @@ export default function AdminNavbar(props) {
                 justifyContent={"center"}
                 cursor={"pointer"}
               >
-                <NavLink to="/src/views/Dashboard/ChatModule.js">
+                
+                <NavLink to="/admin/billing">
                 <IoChatbox />
                 </NavLink>
               </Box>
@@ -169,7 +170,9 @@ export default function AdminNavbar(props) {
                 justifyContent={"center"}
                 cursor={"pointer"}
               >
-                <RiContactsFill />
+                <NavLink to="/admin/tables">
+                  <RiContactsFill />
+                </NavLink>
               </Box>
             </Flex>
             {/* <Link

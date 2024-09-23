@@ -27,19 +27,20 @@ import { ChakraProvider } from "@chakra-ui/react";
 import theme from "theme/theme.js";
 import Profile from "views/Dashboard/Profile";
 import ChatModule from "views/Dashboard/ChatModule";
-import ContactsMain from "views/Dashboard/contactsmain";
+import Tables from "views/Dashboard/Tables";
+import CustomerModule from "views/customermodule";
 
 ReactDOM.render(
   <ChakraProvider theme={theme} resetCss={false} position="relative">
     <HashRouter>
       <Switch>
         <Route path={`/auth`} component={AuthLayout} />
-        <Route path={`/profile`} component={Profile} />
         <Route path={`/admin`} component={AdminLayout} />
         <Route path={`/rtl`} component={RTLLayout} />
         <Route path={`/chatmodule`} component={ChatModule} />
-        <Route path={`/contactsmain`} component={ContactsMain} />
-        <Redirect from={`/`} to="/admin/profile" />
+        <Route path={`/customermodule`} component={CustomerModule} />
+        <Route path={`/tables`} component={Tables} />
+        <Redirect from={`/`} to="/admin/dashboard" />
       </Switch>
     </HashRouter>
   </ChakraProvider>,

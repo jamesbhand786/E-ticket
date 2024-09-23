@@ -4,6 +4,7 @@ import {
   Button,
   Flex,
   HStack,
+  Image,
   Link, Stack, Text, useColorMode, useColorModeValue
 } from "@chakra-ui/react";
 import {
@@ -17,6 +18,7 @@ import {
 } from "components/Icons/Icons";
 import { SidebarResponsive } from "components/Sidebar/Sidebar";
 import React from "react";
+import mainlogo from "assets/icons/alogo.png";
 import { NavLink } from "react-router-dom";
 import routes from "routes.js";
 export default function AuthNavbar(props) {
@@ -49,9 +51,15 @@ export default function AuthNavbar(props) {
       color={mainText}
     >
       <Stack direction="row" spacing="12px" align="center" justify="center">
-        <ArgonLogoLight w="74px" h="27px" />
-        <Box w="1px" h="20px" bg={"white"} />
-        <ChakraLogoBlue w="82px" h="21px" />
+      <Image
+            width={75}
+            objectFit="cover"
+            src={mainlogo}
+            alt="Main Logo"
+            borderRadius={4}
+          />
+        {/* <Box w="1px" h="20px" bg={"white"} /> */}
+        {/* <ChakraLogoBlue w="82px" h="21px" /> */}
       </Stack>
       <Text fontsize="sm" mt="3px">
         {logoText}
@@ -61,7 +69,7 @@ export default function AuthNavbar(props) {
   hamburgerColor = { base: "white" };
   var linksAuth = (
     <HStack display={{ sm: "none", lg: "flex" }}>
-      <NavLink to="/admin/dashboard">
+      {/* <NavLink to="/admin/dashboard">
         <Button
           fontSize="sm"
           ms="0px"
@@ -90,7 +98,7 @@ export default function AuthNavbar(props) {
         >
           <Text>Profile</Text>
         </Button>
-      </NavLink>
+      </NavLink> */}
       <NavLink to="/auth/signup">
         <Button
           fontSize="sm"
@@ -183,7 +191,7 @@ export default function AuthNavbar(props) {
           />
         </Box>
         {linksAuth}
-        <Link href="https://creative-tim.com/product/argon-dashboard-chakra">
+        {/* <Link href="https://creative-tim.com/product/argon-dashboard-chakra">
           <Button
             bg={bgButton}
             color={colorButton}
@@ -197,7 +205,7 @@ export default function AuthNavbar(props) {
           >
             Free Download
           </Button>
-        </Link>
+        </Link> */}
       </Flex>
     </Flex>
   );

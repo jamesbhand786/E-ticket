@@ -16,6 +16,7 @@ import {
 import { ItemContent } from "components/Menu/ItemContent";
 // import UploadDocDropzone from "./components/dropzonemodal";
 import UploadDocDropzone from "./components/dropzone";
+import UploadedFilelist from "./components/uploadedfilelist";
 // import ContactsMain from "views/Dashboard/contactsmain";
 
 export default function IntroCards() {
@@ -29,7 +30,7 @@ export default function IntroCards() {
     const toggleModal3 = () => setModal3Open(!modal3Open);
     return (
         <Box w="100%" mt={10}>
-            <SimpleGrid spacing={5} columns={5}>
+            <SimpleGrid spacing={5} columns={{ sm:1 ,md:3, xl: 5}}>
                 <Card>
                     <CardHeader>
                         <Image
@@ -166,6 +167,7 @@ export default function IntroCards() {
                     <ModalCloseButton />
                     <ModalBody>
                         <UploadDocDropzone />
+                        <UploadedFilelist/>
                     </ModalBody>
                     <ModalFooter>
                         {/* <ContactsMain /> */}

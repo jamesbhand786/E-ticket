@@ -6,15 +6,12 @@ import {
   Tab,
   TabPanel,
   ChakraProvider,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
-import IntroCards from "./components/introcards";
-import EditProfileDetailsTab from "./components/editprofiletab";
-import ChangePassTab from "./components/changepasswordtab";
-import ChatUsers from "./components/chatmodule";
-import LongChatHistory from "./components/chatmodule";
-import SocialChatShell from "./components/chatmodule/chatlist";
-import ChatModule from "./components/chatmodule/chatlist";
+import IntroCards from "./profilecomponents/introcards";
+import EditProfileDetailsTab from "./profilecomponents/editprofiletab";
+import ChangePassTab from "./profilecomponents/changepasswordtab";
 
 const profile = {
   fullName: "John Doe",
@@ -29,13 +26,16 @@ const messages = [
   // Add more messages as needed
 ];
 
+
 const currentUser = {
   id: 1,
 };
 export default function ProfileTabs() {
+  const tabSize = useBreakpointValue({ base: 'sm', md: 'lg' });
+
   return (
-    <Box w="100%" p={4}>
-      <Tabs>
+    <Box w="100%" p={4} overflowX={'auto'}>
+      <Tabs variant="enclosed" size={tabSize}>
         <TabList>
           <Tab>Intro</Tab>
           <Tab>Edit Profile</Tab>

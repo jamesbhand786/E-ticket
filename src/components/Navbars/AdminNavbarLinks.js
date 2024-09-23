@@ -7,6 +7,7 @@ import {
   Button,
   Divider,
   Flex,
+  FormLabel,
   Menu,
   MenuButton,
   MenuDivider,
@@ -53,8 +54,7 @@ export default function HeaderLinks(props) {
     onOpen,
     ...rest
   } = props;
-
-  const { colorMode } = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode();
 
   // Chakra Color Mode
   let navbarIcon =
@@ -171,34 +171,43 @@ export default function HeaderLinks(props) {
               </Flex>
             </MenuItem>
             <Divider my={2} />
-            <MenuItem fontSize={14}>
-              <FaRegUserCircle style={{ marginRight: "10px" }} />
-              <NavLink to="/src/views/Dashboard/Profile.js">
-                <Button
-                  ms="0px"
-                  px="0px"
-                  me={{ sm: "2px", md: "16px" }}
-                  color={navbarIcon}
-                  variant="no-effects"
-                >
-                  {" "}
-                  Profile
-                </Button>
-              </NavLink>
-            </MenuItem>
+            <Flex m={4} alignItems={"baseline"}>
+              <FormLabel htmlFor="isChecked" fontSize={14}>
+                Light Mode:
+              </FormLabel>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={toggleColorMode}
+                color={colorMode === "light" ? "Dark" : "Light"}
+              >
+                {colorMode === "light" ? "Dark" : "Light"}
+              </Button>
+            </Flex>
+            <Divider mb={2} />
+            <NavLink to="/admin/profile">
+              <MenuItem fontSize={14}>
+                <FaRegUserCircle style={{ marginRight: "10px" }} />
+                Profile
+              </MenuItem>
+            </NavLink>
             <MenuItem fontSize={14}>
               <IoSettingsOutline style={{ marginRight: "10px" }} /> Settings{" "}
             </MenuItem>
-            <MenuItem fontSize={14}>
-              <IoLockClosedOutline style={{ marginRight: "10px" }} /> Change
-              Password{" "}
-            </MenuItem>
+            <NavLink to="/auth/forgotpassword">
+              <MenuItem fontSize={14}>
+                <IoLockClosedOutline style={{ marginRight: "10px" }} /> Change
+                Password{" "}
+              </MenuItem>
+            </NavLink>
           </MenuGroup>
           <MenuDivider />
-          <MenuItem fontSize={14}>
-            <IoIosPower style={{ marginRight: "10px" }} />
-            Log Out
-          </MenuItem>
+          <NavLink to="/auth/signin">
+            <MenuItem fontSize={14}>
+              <IoIosPower style={{ marginRight: "10px" }} />
+              Log Out
+            </MenuItem>
+          </NavLink>
         </MenuList>
       </Menu>
       {/* <NavLink to="/auth/profile">
