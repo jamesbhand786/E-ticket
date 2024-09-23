@@ -38,7 +38,7 @@ import {
 } from "variables/general";
 import ChatMain from "views/chatmodule/chatlist";
 
-function Billing() {
+function Chatts() {
   // Chakra color mode
   const iconBlue = useColorModeValue("blue.500", "blue.500");
   const textColor = useColorModeValue("gray.700", "white");
@@ -56,4 +56,4 @@ function Billing() {
   );
 }
 
-export default Billing;
+export default Chatts;

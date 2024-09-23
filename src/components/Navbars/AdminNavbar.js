@@ -101,7 +101,7 @@ export default function AdminNavbar(props) {
         transitionDuration=" 0.25s, 0.25s, 0.25s, 0s"
         transition-property="box-shadow, background-color, filter, border"
         transitionTimingFunction="linear, linear, linear, linear"
-        gap={5}
+        gap={2}
         justifyContent={{ xl: "center" }}
         // lineHeight="25.6px"
         // mx="auto"
@@ -113,7 +113,7 @@ export default function AdminNavbar(props) {
       >
         <Box>
           <Image
-            width={75}
+            width={100}
             objectFit="cover"
             src={mainlogo}
             alt="Main Logo"
@@ -123,7 +123,7 @@ export default function AdminNavbar(props) {
         <Flex
           w="100%"
           flexDirection={{
-            sm: "column",
+            xs: "column",
             md: "row",
           }}
           alignItems={{ xl: "center" }}
@@ -154,9 +154,8 @@ export default function AdminNavbar(props) {
                 justifyContent={"center"}
                 cursor={"pointer"}
               >
-                
-                <NavLink to="/admin/billing">
-                <IoChatbox />
+                <NavLink to="/admin/chatts">
+                  <IoChatbox />
                 </NavLink>
               </Box>
               <Box
@@ -170,7 +169,7 @@ export default function AdminNavbar(props) {
                 justifyContent={"center"}
                 cursor={"pointer"}
               >
-                <NavLink to="/admin/tables">
+                <NavLink to="/admin/contacts">
                   <RiContactsFill />
                 </NavLink>
               </Box>
@@ -194,7 +193,7 @@ export default function AdminNavbar(props) {
               {brandText}
             </Link> */}
           </Box>
-          <Box ms="auto" w={{ sm: "100%", md: "unset" }}>
+          <Box ms="auto" w={{ md: "unset" }}>
             <AdminNavbarLinks
               onOpen={props.onOpen}
               logoText={props.logoText}

@@ -9,6 +9,7 @@ import {
   Container,
   HStack,
   useBreakpointValue,
+  SimpleGrid,
 } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
 import AboutCustomer from "./components/aboutcustomer";
@@ -112,20 +113,20 @@ export default function CustomerTabs() {
         <TabPanels>
           <TabPanel>
             <Container maxW="xxl" mt={10} p={0}>
-              <HStack spacing={4} alignItems={'baseline'}>
-              <Box w='50%'>
+            <SimpleGrid columns={{ sm: 1, md: 2, xl: 3 }} spacing={4} width={'100%'} alignItems={'baseline'}>
+            <Box w='100%'>
               <EditableFields
                   initialData={fieldsData}
                   onSave={handleSave}
                 />
               </Box>
-              <Box w='50%'>
+              <Box w='100%'>
               <EditableFieldsTwo
                   initialData={fieldsData1}
                   onSave={handleSave1}
                 />
               </Box>
-              </HStack>
+              </SimpleGrid>
             </Container>
           </TabPanel>
           <TabPanel>

@@ -20,7 +20,7 @@ import React from "react";
 import { tablesProjectData, tablesTableData } from "variables/general";
 import CustomerModule from "views/customermodule";
 
-function Tables() {
+function Contacts() {
   const textColor = useColorModeValue("gray.700", "white");
   const borderColor = useColorModeValue("gray.200", "gray.600");
 
@@ -33,4 +33,4 @@ function Tables() {
   );
 }
 
-export default Tables;
+export default Contacts;

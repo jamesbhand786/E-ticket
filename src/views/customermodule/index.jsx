@@ -17,6 +17,9 @@ import {
   Input,
   useDisclosure,
   Button,
+  SimpleGrid,
+  GridItem,
+  Grid,
 } from '@chakra-ui/react';
 import { grey } from '@mui/material/colors';
 import { PlusSquareIcon, Search2Icon, SearchIcon } from '@chakra-ui/icons';
@@ -100,63 +103,65 @@ const SocialChatShell = () => {
   return (
     <Flex h="70vh">
       {/* Conversation List */}
-      <Box w="25%" borderRightWidth="1px" overflowY="scroll" maxHeight="100vh">
-        <Flex justifyContent={'space-between'} alignItems={'center'}>
-          <Text fontSize={18} fontWeight={600}  >
-            Contacts
-          </Text>
-          <Box width={8} mr={4} height={8} background={'#e2e8f0'} borderRadius={50} display={'flex'} alignItems={'center'} justifyContent={'center'} onClick={onOpen}>
+      <Grid  templateColumns={{ sm: 'repeat(5, 1fr)', md: 'repeat(4, 1fr)'}} gap={4} >
+        <GridItem colSpan={{ sm:2, md:1}}  borderRightWidth="1px" overflowY="auto" maxHeight="100vh" width={'100%'}>
+          <Flex justifyContent={'space-between'} alignItems={'center'}>
+            <Text fontSize={18} fontWeight={600}  >
+              Contacts
+            </Text>
+            <Box width={8} mr={4} height={8} background={'#e2e8f0'} borderRadius={50} display={'flex'} alignItems={'center'} justifyContent={'center'} onClick={onOpen}>
               <GoPlus />
-          </Box>
-        </Flex>
-        <Box m={4} ml={0}>
-          <InputGroup>
-            <InputLeftElement
-              pointerEvents="none"
-              children={<Search2Icon color="gray.300" />}
-            />
-            <Input type="text" placeholder="Search contact / chat" />
-          </InputGroup>
-        </Box>
-        <Stack spacing={0}>
-          {conversations.map((conversation) => (
-            <Box
-              key={conversation.id}
-              p={3}
-              cursor="pointer"
-              bg={conversation.id === selectedConversation.id ? 'primary.100' : 'transparent'}
-              _hover={{ bg: 'primary.50' }}
-              onClick={() => handleSelectConversation(conversation)}
-            >
-              <Flex align="center">
-                <Avatar size="md" src={conversation.user.avatar} borderRadius={5} />
-                <Flex direction={'column'}>
-                  <Text ml={3} fontSize={14} fontWeight={500}  >
-                     Alice Watson 
-                  </Text>
-                  <Text ml={3} fontSize={12} fontWeight={400} color={emailColor}>
-                    @tauba_tauba
-                  </Text>
-                </Flex>
-              </Flex>
             </Box>
-          ))}
-        </Stack>
-      </Box>
-      <Box width={'100%'}>
-      <CustomerTabModule />
-      </Box>
+          </Flex>
+          <Box m={4} ml={0}>
+            <InputGroup>
+              <InputLeftElement
+                pointerEvents="none"
+                children={<Search2Icon color="gray.300" />}
+              />
+              <Input type="text" placeholder="Search contact / chat" />
+            </InputGroup>
+          </Box>
+          <Stack spacing={0}>
+            {conversations.map((conversation) => (
+              <Box
+                key={conversation.id}
+                p={3}
+                cursor="pointer"
+                bg={conversation.id === selectedConversation.id ? 'primary.100' : 'transparent'}
+                _hover={{ bg: 'primary.50' }}
+                onClick={() => handleSelectConversation(conversation)}
+              >
+                <Flex align="center">
+                  <Avatar size="md" src={conversation.user.avatar} borderRadius={5} />
+                  <Flex direction={'column'}>
+                    <Text ml={3} fontSize={14} fontWeight={500}  >
+                      Alice Watson
+                    </Text>
+                    <Text ml={3} fontSize={12} fontWeight={400} color={emailColor}>
+                      @tauba_tauba
+                    </Text>
+                  </Flex>
+                </Flex>
+              </Box>
+            ))}
+          </Stack>
+        </GridItem>
+        <GridItem colSpan={{ sm:3, md:3}} width={'100%'}>
+          <CustomerTabModule />
+        </GridItem>
+      </Grid>
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
-          <Text fontSize={18} fontWeight={500}  >
-            Add New Contact
-          </Text>
+            <Text fontSize={18} fontWeight={500}  >
+              Add New Contact
+            </Text>
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <AddCustomerDetails/>
+            <AddCustomerDetails />
           </ModalBody>
         </ModalContent>
       </Modal>

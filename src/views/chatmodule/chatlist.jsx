@@ -176,226 +176,229 @@ const SocialChatShell = () => {
     setItems(updatedItems);
   };
   return (
-    <Flex h="85vh" overflow={'hidden'}>
+    <Flex h="85vh" overflow={'hidden'} overflowY={'auto'}>
       {/* Conversation List */}
-      <Box borderRightWidth="1px" sx={{ width: '20%' }} p={4}>
-        <Flex justifyContent={'space-between'} alignItems={'center'}>
-          <Text fontSize={18} fontWeight={400}  >
-            Chats
-          </Text>
-          <Text fontSize={15} fontWeight={400} mr={4} cursor={'pointer'}>
-            + New
-          </Text>
-        </Flex>
-        <Box m={4} ml={1}>
-          <InputGroup>
-            <InputLeftElement
-              pointerEvents="none"
-              children={<Search2Icon color="gray.300" />}
-            />
-            <Input type="text" placeholder="Search contact / chat" />
-          </InputGroup>
-        </Box>
-        <Stack spacing={0}>
-          {conversations.map((conversation) => (
-            <Box
-              key={conversation.id}
-              p={3}
-              cursor="pointer"
-              bg={conversation.id === selectedConversation.id ? 'primary.100' : 'transparent'}
-              _hover={{ bg: 'primary.50' }}
-              onClick={() => handleSelectConversation(conversation)}
-            >
-              <Flex align="center">
-                <Avatar size="md" src={conversation.user.avatar} />
-                <Flex direction={'column'}>
-                  <Text ml={3} fontSize={15} fontWeight={500}  >
-                    Alice Watson
-                  </Text>
-                  <Text ml={3} fontSize={13} fontWeight={400} color={emailColor}>
-                    Incoming Video Call • 45 mins ago
-                  </Text>
+      <SimpleGrid columns={{ sm: 1, md: 2, xl: 3 }} spacing={4} width={'100%'}>
+        <Box borderRightWidth="1px" p={4} width={'100%'}>
+          <Flex justifyContent={'space-between'} alignItems={'center'}>
+            <Text fontSize={18} fontWeight={400}  >
+              Chats
+            </Text>
+            <Text fontSize={15} fontWeight={400} mr={4} cursor={'pointer'}>
+              + New
+            </Text>
+          </Flex>
+          <Box m={4} ml={1}>
+            <InputGroup>
+              <InputLeftElement
+                pointerEvents="none"
+                children={<Search2Icon color="gray.300" />}
+              />
+              <Input type="text" placeholder="Search contact / chat" />
+            </InputGroup>
+          </Box>
+          <Stack spacing={0}>
+            {conversations.map((conversation) => (
+              <Box
+                key={conversation.id}
+                p={3}
+                cursor="pointer"
+                bg={conversation.id === selectedConversation.id ? 'primary.100' : 'transparent'}
+                _hover={{ bg: 'primary.50' }}
+                onClick={() => handleSelectConversation(conversation)}
+              >
+                <Flex align="center">
+                  <Avatar size="md" src={conversation.user.avatar} />
+                  <Flex direction={'column'}>
+                    <Text ml={3} fontSize={15} fontWeight={500}  >
+                      Alice Watson
+                    </Text>
+                    <Text ml={3} fontSize={13} fontWeight={400} color={emailColor}>
+                      Incoming Video Call • 45 mins ago
+                    </Text>
+                  </Flex>
                 </Flex>
+              </Box>
+            ))}
+          </Stack>
+        </Box>
+        {/* Chat Messages */}
+        <Box sx={{ background: '#dbeafe', position: 'relative' }} width={'100%'}>
+          <Flex align="center" p={4} justifyContent={'space-between'} sx={{ background: '#fff' }}>
+            <Flex align={'center'}>
+              <Avatar size="md" name={selectedConversation.user.name} src={selectedConversation.user.avatar} />
+              <Flex direction={'column'}>
+                <Text ml={3} fontSize={16} fontWeight={400}>
+                  Alice Watson
+                </Text>
+                <Text ml={3} fontSize={13} fontWeight={400} color={emailColor}>
+                  Active
+                </Text>
               </Flex>
-            </Box>
-          ))}
-        </Stack>
-      </Box>
-
-      {/* Chat Messages */}
-      <Box sx={{ background: '#dbeafe', width: '60%', position: 'relative' }}>
-        <Flex align="center" p={4} justifyContent={'space-between'} sx={{ background: '#fff' }}>
-          <Flex align={'center'}>
-            <Avatar size="md" name={selectedConversation.user.name} src={selectedConversation.user.avatar} />
-            <Flex direction={'column'}>
-              <Text ml={3} fontSize={16} fontWeight={400}>
-                Alice Watson
-              </Text>
-              <Text ml={3} fontSize={13} fontWeight={400} color={emailColor}>
-                Active
-              </Text>
+            </Flex>
+            <Flex>
+              <Box width={10} height={10} background={'#e2e8f0'} borderRadius={8} display={'flex'} alignItems={'center'} justifyContent={'center'} onClick={() => setIsOpenModal1(true)}>
+                <IoCall />
+              </Box>
+              <SearchbarChat />
+              <Box ml={4} width={10} height={10} background={'#e2e8f0'} borderRadius={8} display={'flex'} alignItems={'center'} justifyContent={'center'}>
+                <PlusSquareIcon />
+              </Box>
             </Flex>
           </Flex>
-          <Flex>
-            <Box width={10} height={10} background={'#e2e8f0'} borderRadius={8} display={'flex'} alignItems={'center'} justifyContent={'center'} onClick={() => setIsOpenModal1(true)}>
-              <IoCall />
-            </Box>
-            <SearchbarChat />
-            <Box ml={4} width={10} height={10} background={'#e2e8f0'} borderRadius={8} display={'flex'} alignItems={'center'} justifyContent={'center'}>
-              <PlusSquareIcon />
-            </Box>
-          </Flex>
-        </Flex>
-        <Divider mb={10} mt={5} />
-        <Text my={5} fontSize={12} fontWeight={500} color="gray.500" textAlign={'center'}>
-          Aug 22, 2022, 3:05 PM
-        </Text>
-        {selectedConversation.messages.map((message) => (
-          <Flex key={message.id} direction={message.isSender ? 'row-reverse' : 'row'} p={4} align="flex-start">
-            {!message.isSender && (
-              <Avatar size="sm" name={selectedConversation.user.name} src={selectedConversation.user.avatar} />
-            )}
-            <Box
-              borderRadius="lg"
-              px={4} ml={2}
-              py={2}
-              bg={message.isSender ? 'primary.500' : '#fff'}
-              color={message.isSender ? 'white' : 'black'}
-              boxShadow="md"
-            >
-              {/* <Text fontSize="sm" fontWeight="bold" mb={1}>
+          <Divider mb={10} mt={5} />
+          <Box width={'100%'} minHeight={350} overflowY={'auto'}>
+            <Text my={5} fontSize={12} fontWeight={500} color="gray.500" textAlign={'center'}>
+              Aug 22, 2022, 3:05 PM
+            </Text>
+            {selectedConversation.messages.map((message) => (
+              <Flex key={message.id} direction={message.isSender ? 'row-reverse' : 'row'} p={4} align="flex-start">
+                {!message.isSender && (
+                  <Avatar size="sm" name={selectedConversation.user.name} src={selectedConversation.user.avatar} />
+                )}
+                <Box
+                  borderRadius="lg"
+                  px={4} ml={2}
+                  py={2}
+                  bg={message.isSender ? 'primary.500' : '#fff'}
+                  color={message.isSender ? 'white' : 'black'}
+                  boxShadow="md"
+                >
+                  {/* <Text fontSize="sm" fontWeight="bold" mb={1}>
                 {selectedConversation.user.name}
               </Text> */}
-              <Text fontSize="sm">{message.text}</Text>
-              <Text fontSize={12} fontWeight={400} color="gray.500" textAlign={'end'}>
-                {message.timestamp}
+                  <Text fontSize="sm">{message.text}</Text>
+                  <Text fontSize={12} fontWeight={400} color="gray.500" textAlign={'end'}>
+                    {message.timestamp}
+                  </Text>
+                </Box>
+              </Flex>
+            ))}
+          </Box>
+          <Flex align="center" p={4} gap={4} justifyContent={'space-around'} sx={{ background: '#fff', bottom: '0', position: 'absolute', w: '100%' }}>
+            <Box width={10} height={10} background={'#e2e8f0'} borderRadius={50} display={'flex'} alignItems={'center'} justifyContent={'center'} cursor={'pointer'}>
+              <GoPlus />
+            </Box>
+            <Box width={10} height={10} background={'#e2e8f0'} borderRadius={50} display={'flex'} alignItems={'center'} justifyContent={'center'} cursor={'pointer'} onClick={() => setIsOpenModal2(true)}>
+              <FaRegImage />
+            </Box>
+            <Popover>
+              <PopoverTrigger>
+                <Box width={10} height={10} background={'#e2e8f0'} borderRadius={50} display={'flex'} alignItems={'center'} justifyContent={'center'} cursor={'pointer'}>
+                  <MdEmojiEmotions />
+                </Box>
+              </PopoverTrigger>
+              <PopoverContent width={'fit-content'}>
+                <EmojiPicker onEmojiSelect={handleEmojiSelect} />
+              </PopoverContent>
+            </Popover>
+            <Box sx={{ width: { sm: '50%', md: '80%' } }}>
+              <Input size='md' bg={'#E2E8F0'} />
+            </Box>
+            <Box width={10} height={10} background={'#e2e8f0'} borderRadius={50} display={'flex'} alignItems={'center'} justifyContent={'center'} cursor={'pointer'}>
+              <IoMdSend />
+            </Box>
+          </Flex>
+        </Box>
+        <Box width={'100%'}>
+          <Box
+            minH="15vh"
+            bgImage={colorMode === "light" ? bgAdmin : "navy.900"}
+            // bg={colorMode === "light" ? bgAdmin : "navy.900"}
+            bgSize="100%"
+          />
+          <Box textAlign={'center'}>
+            <Avatar
+              src={avatar5}
+              position="relative"
+              w="100px"
+              bottom={'2rem'}
+              border={'3px solid #fff'}
+              h="100x"
+              borderRadius="10px"
+            />
+          </Box>
+          <Flex
+            align="center"
+            direction={{ sm: "column", md: "row" }}
+            w={{ sm: "100%" }}
+            textAlign={{ sm: "center", md: "start" }}
+          >
+            <Box textAlign={'center'} w={'100%'}>
+              <Text
+                fontSize={{ sm: "sm", lg: "md" }}
+                color={textColor}
+                fontWeight="500"
+              >
+                Jasmin Thomp
+              </Text>
+              <Text
+                mt={2}
+                fontSize={{ sm: "xs", md: "xs" }}
+                color={emailColor}
+                fontWeight="normal"
+              >
+                Active Now
               </Text>
             </Box>
           </Flex>
-        ))}
-        <Flex align="center" p={4} gap={4} justifyContent={'space-around'} sx={{ background: '#fff', bottom: '0', position: 'absolute', w: '100%' }}>
-          <Box width={10} height={10} background={'#e2e8f0'} borderRadius={50} display={'flex'} alignItems={'center'} justifyContent={'center'} cursor={'pointer'}>
-            <GoPlus />
-          </Box>
-          <Box width={10} height={10} background={'#e2e8f0'} borderRadius={50} display={'flex'} alignItems={'center'} justifyContent={'center'} cursor={'pointer'} onClick={() => setIsOpenModal2(true)}>
-            <FaRegImage />
-          </Box>
-          <Popover>
-            <PopoverTrigger>
-              <Box width={10} height={10} background={'#e2e8f0'} borderRadius={50} display={'flex'} alignItems={'center'} justifyContent={'center'} cursor={'pointer'}>
-                <MdEmojiEmotions />
-              </Box>
-            </PopoverTrigger>
-            <PopoverContent width={'fit-content'}>
-              <EmojiPicker onEmojiSelect={handleEmojiSelect} />
-            </PopoverContent>
-          </Popover>
-          <Box sx={{width:{sm:'50%', md:'80%'}}}>
-            <Input size='md' bg={'#E2E8F0'} />
-          </Box>
-          <Box width={10} height={10} background={'#e2e8f0'} borderRadius={50} display={'flex'} alignItems={'center'} justifyContent={'center'} cursor={'pointer'}>
-            <IoMdSend />
-          </Box>
-        </Flex>
-      </Box>
-      <Box sx={{ width: '20%' }}>
-        <Box
-          minH="15vh"
-          bgImage={colorMode === "light" ? bgAdmin : "navy.900"}
-          // bg={colorMode === "light" ? bgAdmin : "navy.900"}
-          bgSize="100%"
-        />
-        <Box textAlign={'center'}>
-          <Avatar
-            src={avatar5}
-            position="relative"
-            w="100px"
-            bottom={'2rem'}
-            border={'3px solid #fff'}
-            h="100x"
-            borderRadius="10px"
-          />
+          <SimpleGrid columns={{ sm: 1, md: 2, xl: 3 }} spacing={4} justifyItems={'center'} mt={8} width={'100%'} px={2}>
+            <Box fontSize={25} color={iconBlue} width={'100%'} background={borderColor} p={3} borderRadius={8} >
+              <GoMute />
+              <Text
+                fontSize={{ sm: "xs" }}
+                color={textColor}
+                fontWeight="400"
+              >
+                Mute
+              </Text>
+            </Box>
+            <Box fontSize={25} color={iconBlue} width={'100%'} background={borderColor} p={3} borderRadius={8}>
+              <MdPictureInPicture />
+              <Text
+                fontSize={{ sm: "xs" }}
+                color={textColor}
+                fontWeight="400"
+              >
+                Documents
+              </Text>
+            </Box>
+            <Box fontSize={25} color={iconBlue} width={'100%'} background={borderColor} p={3} borderRadius={8} onClick={() => setIsOpenModal5(true)}>
+              <GoFilter />
+              <Text
+                fontSize={{ sm: "xs" }}
+                color={textColor}
+                fontWeight="400"
+              >
+                Options
+              </Text>
+            </Box>
+            <Box fontSize={25} color={iconBlue} width={'100%'} background={borderColor} p={3} borderRadius={8} onClick={() => setIsOpenModal4(true)}>
+              <IoRecordingSharp />
+              <Text
+                fontSize={{ sm: "xs" }}
+                color={textColor}
+                fontWeight="400"
+              >
+                Call Records
+              </Text>
+            </Box>
+            <Box fontSize={25} color={iconBlue} width={'100%'} background={borderColor} p={3} borderRadius={8} onClick={() => setIsOpenModal3(true)}>
+              <FaUserAlt size={18} />
+              <Text
+                fontSize={{ sm: "xs" }}
+                color={textColor}
+                fontWeight="400"
+              >
+                Personal Details
+              </Text>
+            </Box>
+          </SimpleGrid>
+          {meetings.map((meeting, index) => (
+            <ChatProfileMeetinfo key={index} meeting={meeting} />
+          ))}
         </Box>
-        <Flex
-          align="center"
-          direction={{ sm: "column", md: "row" }}
-          w={{ sm: "100%" }}
-          textAlign={{ sm: "center", md: "start" }}
-        >
-          <Box textAlign={'center'} w={'100%'}>
-            <Text
-              fontSize={{ sm: "sm", lg: "md" }}
-              color={textColor}
-              fontWeight="500"
-            >
-              Jasmin Thomp
-            </Text>
-            <Text
-              mt={2}
-              fontSize={{ sm: "xs", md: "xs" }}
-              color={emailColor}
-              fontWeight="normal"
-            >
-              Active Now
-            </Text>
-          </Box>
-        </Flex>
-        <SimpleGrid columns={3} spacing={8} justifyItems={'center'} mt={8} width={'100%'} px={2}>
-          <Box fontSize={25} color={iconBlue} width={'100%'} background={borderColor} p={3} borderRadius={8} >
-            <GoMute />
-            <Text
-              fontSize={{ sm: "xs" }}
-              color={textColor}
-              fontWeight="400"
-            >
-              Mute
-            </Text>
-          </Box>
-          <Box fontSize={25} color={iconBlue} width={'100%'} background={borderColor} p={3} borderRadius={8}>
-            <MdPictureInPicture />
-            <Text
-              fontSize={{ sm: "xs" }}
-              color={textColor}
-              fontWeight="400"
-            >
-              Documents
-            </Text>
-          </Box>
-          <Box fontSize={25} color={iconBlue} width={'100%'} background={borderColor} p={3} borderRadius={8} onClick={() => setIsOpenModal5(true)}>
-            <GoFilter />
-            <Text
-              fontSize={{ sm: "xs" }}
-              color={textColor}
-              fontWeight="400"
-            >
-              Options
-            </Text>
-          </Box>
-          <Box fontSize={25} color={iconBlue} width={'100%'} background={borderColor} p={3} borderRadius={8} onClick={() => setIsOpenModal4(true)}>
-            <IoRecordingSharp />
-            <Text
-              fontSize={{ sm: "xs" }}
-              color={textColor}
-              fontWeight="400"
-            >
-              Call Records
-            </Text>
-          </Box>
-          <Box fontSize={25} color={iconBlue} width={'100%'} background={borderColor} p={3} borderRadius={8} onClick={() => setIsOpenModal3(true)}>
-            <FaUserAlt size={18} />
-            <Text
-              fontSize={{ sm: "xs" }}
-              color={textColor}
-              fontWeight="400"
-            >
-              Personal Details
-            </Text>
-          </Box>
-        </SimpleGrid>
-        {meetings.map((meeting, index) => (
-          <ChatProfileMeetinfo key={index} meeting={meeting} />
-        ))}
-      </Box>
+      </SimpleGrid>
       <Modal isOpen={isOpenModal1} onClose={onCloseModal1} isCentered size='lg'>
         <ModalOverlay />
         <ModalContent>

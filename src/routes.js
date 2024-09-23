@@ -1,7 +1,6 @@
 // import
 import React, { Component }  from 'react';
 import Dashboard from "views/Dashboard/Dashboard.js";
-import Billing from "views/Dashboard/Billing.js";
 import RTLPage from "views/RTL/RTLPage.js";
 import Profile from "views/Dashboard/Profile.js";
 
@@ -14,11 +13,12 @@ import {
   RocketIcon,
   SupportIcon,
 } from "components/Icons/Icons";
-import Tables from 'views/Dashboard/Tables';
 import SignIn from 'views/Dashboard/SignIn';
 import SignUp from 'views/Dashboard/SignUp';
 import ForgotPassword from 'views/Dashboard/ForgotPassword';
 import VerifyEmail from 'views/Dashboard/VerifyEmail';
+import Contacts from 'views/Dashboard/Contacts';
+import Chatts from 'views/Dashboard/Chatts';
 
 var dashRoutes = [
   {
@@ -30,19 +30,19 @@ var dashRoutes = [
     layout: "/admin",
   },
   {
-    path: "/tables",
-    name: "tables",
+    path: "/contacts",
+    name: "contacts",
     rtlName: "لوحة القيادة",
     icon: <StatsIcon color='inherit' />,
-    component: Tables,
+    component: Contacts,
     layout: "/admin",
   },
   {
-    path: "/billing",
-    name: "Billing",
+    path: "/chatts",
+    name: "chatts",
     rtlName: "لوحة القيادة",
     icon: <CreditIcon color='inherit' />,
-    component: Billing,
+    component: Chatts,
     layout: "/admin",
   },
   {
